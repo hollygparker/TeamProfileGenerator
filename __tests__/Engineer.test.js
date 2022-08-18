@@ -19,7 +19,7 @@ describe('Engineer', () => {
 describe('Engineer', () => {
     it('Should invoke getRole function', () => {
         const invokeRole = 'Engineer'
-        const test = new Engineer('Abby', 369, 'purple369@mail.com', invokeRole)
+        const test = new Engineer('Abby', 369, 'purple369@mail.com', 'abbypurple963', invokeRole)
         expect(test.invokeRole()).toBe(invokeRole)
     })
 })
