@@ -1,0 +1,22 @@
+{
+  "name": "teamprofilegenerator",
+  "version": "1.0.0",
+  "description": "App that generates team profiles",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hollygparker/TeamProfileGenerator.git"
+  },
+  "author": "Holly Parker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hollygparker/TeamProfileGenerator/issues"
+  },
+  "homepage": "https://github.com/hollygparker/TeamProfileGenerator#readme"
+}
