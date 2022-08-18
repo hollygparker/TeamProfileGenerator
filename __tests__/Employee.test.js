@@ -11,7 +11,7 @@ describe('Employee', () => {
 describe('Employee', () => {
     it('Should return employee id', () => {
         const id = 369
-        const digits = new Employee(id)
+        const digits = new Employee('Abby', id)
         expect(digits.id).toBe(id)
     })
 })
@@ -19,7 +19,7 @@ describe('Employee', () => {
 describe('Employee', () => {
     it('Should return employee email', () => {
         const email = 'purple369@mail.com'
-        const emailAddress = new Employee(email)
+        const emailAddress = new Employee('Abby', 369, email)
         expect(emailAddress.email).toBe(email)
     })
 })
@@ -35,7 +35,7 @@ describe('Employee', () => {
 describe('Employee', () => {
     it('Should invoke getId function', () => {
         const invokeId = 369
-        const test = new Employee(invokeId)
+        const test = new Employee('Abby', invokeId)
         expect(test.getId()).toBe(invokeId)
     })
 })
@@ -43,7 +43,7 @@ describe('Employee', () => {
 describe('Employee', () => {
     it('Should invoke getEmail function', () => {
         const invokeEmail = 'purple369@mail.com'
-        const test = new Employee(invokeEmail)
+        const test = new Employee('Abby', 369, invokeEmail)
         expect(test.getEmail()).toBe(invokeEmail)
     })
 })
@@ -51,7 +51,7 @@ describe('Employee', () => {
 describe('Employee', () => {
     it ('Should invoke getRole function', () => {
         const invokeRole = 'Employee'
-        const test = new Employee(invokeRole)
+        const test = new Employee('Abby', 369, 'purple369@mail.com', invokeRole)
         expect(test.getRole()).toBe(invokeRole)
     })
 })
