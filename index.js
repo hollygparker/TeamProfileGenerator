@@ -3,7 +3,8 @@ const fs = require('fs');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-// const { pageTemplate } = require('./src/template');
+const { profile } = require('console');
+// const { template } = require('./src/template');
 
 var responses = [];
 
@@ -79,5 +80,30 @@ function questions() {
                     )
                 )
             }
+            inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'continue',
+                    message: 'Do you need to continue creating employees?',
+                    choices: [ 'yes', 'no' ]   
+                }
+            ])
+            .then ((response) => {
+                if (response.continue) {
+                    questions();
+                } else {
+                    fs.writeFile('team.html', template(responses), (err) => {
+                        if (err) {
+                            console.log('There was an error creating the file.' + err)
+                        } else {
+                            console.log('The file has been successfully created.')
+                        }
+                     })
+                }
+            })
         })
-}
+} [
+];
+
+questions();
