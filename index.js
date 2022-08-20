@@ -34,12 +34,6 @@ function questions() {
             },
             {
                 type: 'input',
-                name: 'officeNumber',
-                message: 'Enter office number for manager.',
-                when: (response => response.workerRole === 'Manager'),
-            },
-            {
-                type: 'input',
                 name: 'github',
                 message: 'Enter Github username.',
                 when: (response => response.workerRole === 'Engineer'),
@@ -50,18 +44,15 @@ function questions() {
                 message: 'Enter school name.', 
                 when: (response => response.workerRole === 'Intern'),
             },
+            {
+                type: 'input',
+                name: 'officeNumber',
+                message: 'Enter office number for manager.',
+                when: (response => response.workerRole === 'Manager'),
+            },
         ])
         .then ((response) => {
-            if (response.workerRole === 'Manager') {
-                responses.push(
-                    new Manager(
-                        response.name,
-                        response.id,
-                        response.email,
-                        response.officeNumber
-                    )
-                )
-            } else if (response.workerRole === 'Engineer') {
+            if (response.workerRole === 'Engineer') {
                 responses.push(
                     new Engineer(
                         response.name,
@@ -78,8 +69,18 @@ function questions() {
                         response.email,
                         response.school
                     )
+                )  
+            } else if (response.workerRole === 'Manager') {
+                responses.push(
+                    new Manager(
+                        response.name,
+                        response.id,
+                        response.email,
+                        response.officeNumber
+                    )
                 )
             }
+            
             inquirer
             .prompt([
                 {
