@@ -85,6 +85,7 @@ const fileTemplate = responses => {
             <h1 class="text-center">
                 Our Team
             </h1>
+            
             ${fileTemplate(responses)}
         </body>
         </html>

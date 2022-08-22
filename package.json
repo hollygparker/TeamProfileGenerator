@@ -4,10 +4,11 @@
   "description": "App that generates team profiles",
   "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "test":"test"
   },
   "scripts": {
-    "test": "npm run test"
+    "test": "jest --verbose test/*"
   },
   "repository": {
     "type": "git",
