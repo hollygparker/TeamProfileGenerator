@@ -85,8 +85,13 @@ const fileTemplate = responses => {
             <h1 class="text-center">
                 Our Team
             </h1>
-            
+            <div class="container">
+            <div class="row">
+            <div class="col-md-12">
             ${fileTemplate(responses)}
+            </div>
+            </div>
+            </div>
         </body>
         </html>
         `
