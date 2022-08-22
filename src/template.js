@@ -1,4 +1,6 @@
-const template = responses => {
+
+
+const fileTemplate = responses => {
     
     // create engineer html
     const engineerInfo = engineer => {
@@ -51,6 +53,7 @@ const template = responses => {
         }
     
     const createHtml = []
+
     createHtml.push(responses
         .filter(employee => {
             employee.getRole() === 'Manager'
@@ -79,8 +82,7 @@ const template = responses => {
     }
     
     module.exports = responses => {
-        return 
-        `
+        return`
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -94,7 +96,7 @@ const template = responses => {
             <h1 class="text-center">
                 Our Team
             </h1>
-            ${template(responses)}
+            ${fileTemplate(responses)}
         </body>
         </html>
         `

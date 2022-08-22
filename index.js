@@ -3,8 +3,13 @@ const fs = require('fs');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-// const { profile } = require('console');
-const { fileTemplate } = require('./src/template');
+const path = require('path');
+const output = path.resolve(__dirname,"output")
+const outputHTML = path.join(output,
+    "teamProfile.html")
+const  fileTemplate  = require('./src/template.js');
+// const template = require('./src/template.js')
+
 
 var responses = [];
 
@@ -84,18 +89,19 @@ function questions() {
             inquirer
             .prompt([
                 {
-                    type: 'input',
+                    type: 'list',
                     name: 'continue',
                     message: 'Do you need to continue creating employees?',
                     choices: [ 'Yes', 'No' ]   
                 }
             ])
-            .then ((response) => {
-                if (response.continue === 'yes') {
+            .then((response) => {
+                if (response.continue === 'Yes') {
                     questions();
                 } else {
                     console.log(response)
-                    fs.writeFileSync('team.html', fileTemplate(responses),"UTF-8"), (err) => {
+                    console.log(responses)
+                    fs.writeFileSync(outputHTML, fileTemplate(responses),"UTF-8"), (err) => {
                         if (err) {
                             console.log('There was an error creating the file.' + err)
                         } else {
@@ -106,7 +112,6 @@ function questions() {
                 }
             })
         })
-} [
-];
+};
 
 questions();
