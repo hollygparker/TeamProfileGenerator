@@ -9,9 +9,10 @@ const outputHTML = path.join(output,
     "team.html")
 const  fileTemplate  = require('./src/template.js');
 
-
+// need an empty arr to store responses from inquirer
 var responses = [];
 
+// function to hold all inquirer questions
 function questions() {
     inquirer
         .prompt([
@@ -57,7 +58,6 @@ function questions() {
         ])
         .then ((response) => {
             if (response.workerRole === 'Engineer') {
-                // responses.push(
                 const manager = new Engineer(
                         response.name,
                         response.id,
@@ -65,30 +65,27 @@ function questions() {
                         response.github
                     )
                     responses.push(manager)
-                // )
+                
             } else if (response.workerRole === 'Intern') {
-                // responses.push(
                     const intern = new Intern(
                         response.name,
                         response.id,
                         response.email,
                         response.school
                     )
-                // )  
                 responses.push(intern)
             } else if (response.workerRole === 'Manager') {
-                // responses.push(
                     const manager = new Manager(
                         response.name,
                         response.id,
                         response.email,
                         response.officeNumber
                     )
-                // )
+                
                 responses.push(manager)
 
             }
-            
+            // final question 
             inquirer
             .prompt([
                 {
@@ -100,10 +97,12 @@ function questions() {
             ])
             .then((response) => {
                 if (response.continue === 'Yes') {
+                    // if yes, call questions function
                     questions();
                 } else {
                     console.log(response, "LAST RESPONSE")
                     console.log(responses, "TOTAL RESPONSES")
+                    // if no write the file using the template and the responses array
                     fs.writeFileSync(outputHTML, fileTemplate(responses),"UTF-8"), (err) => {
                         if (err) {
                             console.log('There was an error creating the file.' + err)
@@ -116,5 +115,5 @@ function questions() {
             })
         })
 };
-
+// call questions so when you run index file it will be the first thing 
 questions();
