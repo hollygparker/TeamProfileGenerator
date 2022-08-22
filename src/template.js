@@ -1,10 +1,11 @@
 
 
 const fileTemplate = responses => {
-    
+    console.log("IN FILE TEMPLATE", responses)
     // create engineer html
     const engineerInfo = engineer => {
-        return `
+        console.log("IN ENGINEER CARD",engineer)
+        return`
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h1 class="card-title">${engineer.getName()}</h1>
@@ -21,7 +22,7 @@ const fileTemplate = responses => {
     
     //create intern html
     const internInfo = intern => {
-        return `
+        return`
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h1 class="card-title">${intern.getName()}</h1>
@@ -37,7 +38,7 @@ const fileTemplate = responses => {
     }
     // create manager html
     const managerInfo = manager => {
-        return `
+        return`
         <div class="card" style="width: 18rem;">
             <div class="card-body">
             <h1 class="card-title">${manager.getName()}</h1>
@@ -49,34 +50,22 @@ const fileTemplate = responses => {
                 </ul>
             </div>
         </div>
-            `
+        `
         }
     
     const createHtml = []
 
     createHtml.push(responses
-        .filter(employee => {
-            employee.getRole() === 'Manager'
-        })
-        .map(manager => {
-            managerInfo(manager)
-        })
+        .filter(employee => employee.getRole() === 'Manager')
+        .map(manager => managerInfo(manager))
         )
     createHtml.push(responses
-        .filter(employee => {
-            employee.getRole() === 'Engineer'
-        })
-        .map(engineer => {
-            engineerInfo(engineer)
-        })
+        .filter(employee => employee.getRole() === 'Engineer')
+        .map(engineer => engineerInfo(engineer))
         )
     createHtml.push(responses
-        .filter(employee => {
-            employee.getRole() === 'Intern'
-        })
-        .map(intern => {
-            internInfo(intern)
-        })
+        .filter(employee => employee.getRole() === 'Intern')
+        .map(intern => internInfo(intern))
         )
     return createHtml.join('')
     }

@@ -6,9 +6,8 @@ const Manager = require('./lib/Manager');
 const path = require('path');
 const output = path.resolve(__dirname,"output")
 const outputHTML = path.join(output,
-    "teamProfile.html")
+    "team.html")
 const  fileTemplate  = require('./src/template.js');
-// const template = require('./src/template.js')
 
 
 var responses = [];
@@ -58,32 +57,36 @@ function questions() {
         ])
         .then ((response) => {
             if (response.workerRole === 'Engineer') {
-                responses.push(
-                    new Engineer(
+                // responses.push(
+                const manager = new Engineer(
                         response.name,
                         response.id,
                         response.email,
                         response.github
                     )
-                )
+                    responses.push(manager)
+                // )
             } else if (response.workerRole === 'Intern') {
-                responses.push(
-                    new Intern(
+                // responses.push(
+                    const intern = new Intern(
                         response.name,
                         response.id,
                         response.email,
                         response.school
                     )
-                )  
+                // )  
+                responses.push(intern)
             } else if (response.workerRole === 'Manager') {
-                responses.push(
-                    new Manager(
+                // responses.push(
+                    const manager = new Manager(
                         response.name,
                         response.id,
                         response.email,
                         response.officeNumber
                     )
-                )
+                // )
+                responses.push(manager)
+
             }
             
             inquirer
@@ -99,8 +102,8 @@ function questions() {
                 if (response.continue === 'Yes') {
                     questions();
                 } else {
-                    console.log(response)
-                    console.log(responses)
+                    console.log(response, "LAST RESPONSE")
+                    console.log(responses, "TOTAL RESPONSES")
                     fs.writeFileSync(outputHTML, fileTemplate(responses),"UTF-8"), (err) => {
                         if (err) {
                             console.log('There was an error creating the file.' + err)
